@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Toolkit Showcase — Gui</title>
+<style>
+  :root{
+    --bg:#fafaf8; --card:#ffffff; --text:#1a1a1a; --muted:#6b6b6b;
+    --accent:#2f6f4f; --accent-soft:#e8f3ec; --border:#e6e4de;
+    --before:#fff4f0; --before-text:#8a3b22; --after:#eef8f1; --after-text:#1f5c3a;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#15161a; --card:#1d1f24; --text:#eceae4; --muted:#9a998f;
+      --accent:#6fcf9b; --accent-soft:#1d2c24; --border:#2b2d33;
+      --before:#2a1f1a; --before-text:#e0a288; --after:#182720; --after-text:#8fd8ab;
+    }
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg); color:var(--text); margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    line-height:1.5;
+  }
+  .wrap{max-width:820px;margin:0 auto;padding:48px 24px 80px;}
+  header h1{font-size:1.7rem;margin:0 0 8px;}
+  header p{color:var(--muted);max-width:60ch;margin:0 0 6px;}
+  header .tag{
+    display:inline-block;margin-top:16px;font-size:0.8rem;color:var(--accent);
+    background:var(--accent-soft);padding:4px 10px;border-radius:20px;
+  }
+  .skills{margin-top:40px;display:flex;flex-direction:column;gap:16px;}
+  .card{
+    background:var(--card);border:1px solid var(--border);border-radius:14px;
+    padding:20px 22px;
+  }
+  .card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;cursor:pointer;}
+  .card-head h2{font-size:1.05rem;margin:0 0 4px;}
+  .card-head p{margin:0;color:var(--muted);font-size:0.92rem;}
+  .toggle{
+    border:1px solid var(--border);background:transparent;color:var(--text);
+    border-radius:8px;padding:6px 12px;font-size:0.85rem;white-space:nowrap;
+    align-self:center;
+  }
+  .example{display:none;margin-top:18px;padding-top:16px;border-top:1px dashed var(--border);}
+  .example.open{display:block;}
+  .ex-label{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.04em;color:var(--muted);margin-bottom:6px;}
+  .ex-block{border-radius:10px;padding:12px 14px;font-size:0.88rem;white-space:pre-wrap;margin-bottom:12px;}
+  .ex-block.before{background:var(--before);color:var(--before-text);}
+  .ex-block.after{background:var(--after);color:var(--after-text);}
+  .ex-block.after strong, .ex-block.before strong{color:inherit;}
+  footer{margin-top:56px;color:var(--muted);font-size:0.85rem;border-top:1px solid var(--border);padding-top:20px;}
+  footer a{color:var(--accent);}
+  a{color:var(--accent);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>AI Toolkit Showcase</h1>
+    <p>Five Claude skills I built and actually use — for de-AI-ifying my own writing, deciding which jobs to apply for, testing message tone before I hit send, and drafting customer replies in German.</p>
+    <p>Not a portfolio demo — this is the real configuration behind tools I run day to day.</p>
+    <span class="tag">Built with Claude · September 2026</span>
+  </header>
+
+  <section class="skills">
+
+    <div class="card">
+      <div class="card-head" onclick="toggle('huminazer')">
+        <div>
+          <h2>huminazer</h2>
+          <p>Rewrites AI-sounding English text to read as human-written — same facts, same meaning, none of the tells.</p>
+        </div>
+        <button class="toggle">See example</button>
+      </div>
+      <div class="example" id="huminazer">
+        <div class="ex-label">Before</div>
+        <div class="ex-block before">In today's fast-paced digital landscape, our platform serves as a robust solution that boasts seamless integration capabilities. By leveraging cutting-edge technology, we're able to foster meaningful connections and unlock new opportunities for growth. Not just a tool, but a true partner in your journey — ensuring long-term success every step of the way.</div>
+        <div class="ex-label">After</div>
+        <div class="ex-block after">Our platform integrates easily with the tools you already use. It's built on solid, current tech, and it's meant to help you actually grow, not just say the word "growth" at you.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head" onclick="toggle('huminazer-german')">
+        <div>
+          <h2>huminazer-german</h2>
+          <p>The German-language version — tuned to the specific phrases and formatting that give away AI-written German.</p>
+        </div>
+        <button class="toggle">See example</button>
+      </div>
+      <div class="example" id="huminazer-german">
+        <div class="ex-label">Before</div>
+        <div class="ex-block before">Die Stadt spielt eine wichtige Rolle in der Region und bietet Besuchern ein reiches kulturelles Erbe. Es ist wichtig zu erwähnen, dass die Altstadt nicht nur historisch bedeutsam ist, sondern auch atemberaubende Architektur bietet, die man unbedingt gesehen haben muss.</div>
+        <div class="ex-label">After</div>
+        <div class="ex-block after">Die Stadt ist wirtschaftlich wichtig für die Region. In der Altstadt stehen viele Gebäude aus dem 18. Jahrhundert, die einen Besuch wert sind.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head" onclick="toggle('career-fit')">
+        <div>
+          <h2>career-fit-analyzer</h2>
+          <p>Scores a job posting against my real background — hard skills match, culture fit, top differentiators, and honest gaps with reframing language.</p>
+        </div>
+        <button class="toggle">See example</button>
+      </div>
+      <div class="example" id="career-fit">
+        <div class="ex-label">Sample output (illustrative)</div>
+        <div class="ex-block after"><strong>1. Fit Verdict</strong>
+Strong match → Apply.
+Hard skills overlap is high (paid social, GA4, lifecycle email), seniority matches (mid-senior IC/lead), and the JD's "ownership, data-driven, fast-moving" language matches how I've operated in every role since AMARO.
+
+<strong>4. Top 3 Differentiators to Lead With</strong>
+1. Took TikTok Shop from €0 to €25K revenue in month one — direct evidence of new-channel launch speed, which this JD explicitly asks for.
+2. Built the newsletter program from 0 to 14,000 subscribers at 20–25% open rate — shows lifecycle/retention chops, not just acquisition.
+3. Drove a 4x revenue increase via a pricing restructure as PM, not just marketing — shows cross-functional ownership beyond the marketing seat.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head" onclick="toggle('tone-alt')">
+        <div>
+          <h2>tone-alternatives</h2>
+          <p>Rewrites a message I'm about to send in 5 different tones, so I pick the right one before hitting send.</p>
+        </div>
+        <button class="toggle">See example</button>
+      </div>
+      <div class="example" id="tone-alt">
+        <div class="ex-label">Input</div>
+        <div class="ex-block before">"Hey, just wanted to check if you're still coming to the meeting tomorrow?"</div>
+        <div class="ex-label">5 outputs</div>
+        <div class="ex-block after"><strong>Casual & warm</strong> — Hey! Still good for tomorrow's meeting? 😊
+<strong>Direct</strong> — Are you coming to the meeting tomorrow — yes or no?
+<strong>Playful</strong> — Tomorrow's meeting — you in or you ghosting us? 👀
+<strong>Soft / gentle</strong> — No pressure at all, just wanted to check — are you still planning to join tomorrow?
+<strong>Short & punchy</strong> — Meeting tomorrow — still on?</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head" onclick="toggle('whatsapp')">
+        <div>
+          <h2>whatsapp-kundenservice</h2>
+          <p>Drafts short, warm, on-brand German WhatsApp customer service replies — including de-escalating a genuinely frustrated customer, not just FAQs.</p>
+        </div>
+        <button class="toggle">See example</button>
+      </div>
+      <div class="example" id="whatsapp">
+        <div class="ex-label">Incoming (illustrative)</div>
+        <div class="ex-block before">„Das ist jetzt die DRITTE Mail an euch und ich hab immer noch keine Antwort bekommen. Das ist echt unterirdisch."</div>
+        <div class="ex-label">Reply</div>
+        <div class="ex-block after">„Hey, das tut mir wirklich leid, das ist so nicht ok 😟 Ich kümmer mich jetzt sofort persönlich drum, kein Weiterschieben mehr. Gib mir kurz deine Bestellnummer, ich meld mich in den nächsten Stunden mit einer Lösung bei dir."</div>
+      </div>
+    </div>
+
+  </section>
+
+  <footer>
+    Full instruction files for each skill are in the <a href="https://github.com/guitpf/ai-toolkit-showcase" target="_blank">repo</a>. Examples above are illustrative — no real customer or employer data is used anywhere in this project.
+  </footer>
+</div>
+
+<script>
+  function toggle(id){
+    document.getElementById(id).classList.toggle('open');
+  }
+</script>
+</body>
+</html>
